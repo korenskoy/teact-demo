@@ -11,31 +11,28 @@ function App() {
     <div>
       <h2>Hello Teact!</h2>
 
-      <Child />
-      <Checkbox />
+      <Input label="First input" />
+      <Input label="Second input" />
     </div>
   );
 }
 
-function Child() {
-  return (
-    <div>
-      This is your first component.
-    </div>
-  );
-}
 
-function Checkbox() {
-  const [isChecked, setIsChecked] = useState(true);
+function Input({ label }) {
+  const [text, setText] = useState('');
 
-  function handleCheck() {
-    setIsChecked((current) => !current);
+  function handleChange(e) {
+    setText(e.target.value);
   }
 
   return (
     <label>
-      <input type="checkbox" checked={isChecked} onChange={handleCheck} />
-      This is a controlled form element.
+      {label}
+      {' '}
+      <input
+        value={text}
+        onChange={handleChange}
+      />
     </label>
   );
 }
